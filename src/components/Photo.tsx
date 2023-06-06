@@ -28,6 +28,7 @@ export const Photo: React.FC<PhotoProps> = (props) => {
       <img
         alt={`${props.person.name}`}
         height={`${imageSize === "" ? 0 : imageSize}px`}
+        id={`look-photo-${props.person.name}`}
         onClick={() => setOpen(true)}
         src={props.person.photo === "" ? placeholderImg : props.person.photo}
         width={`${imageSize === "" ? 0 : imageSize}px`}

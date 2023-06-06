@@ -9,6 +9,7 @@ type LookProps = {
 };
 
 export const Look: React.FC<LookProps> = (props) => {
+  const imageSize = useBoundStore((state) => state.imageSize);
   const people = useBoundStore((state) => state.people);
   const removePerson = useBoundStore((state) => state.removePerson);
   const swapPeople = useBoundStore((state) => state.swapPeople);
@@ -23,7 +24,7 @@ export const Look: React.FC<LookProps> = (props) => {
   });
 
   return (
-    <Stack alignItems="start" direction="row" spacing={1}>
+    <Stack alignItems="start" direction="row" spacing={2}>
       <Stack justifyContent="space-between">
         <Button
           disabled={personAbove === undefined}
@@ -43,7 +44,12 @@ export const Look: React.FC<LookProps> = (props) => {
         </Button>
       </Stack>
       <Photo person={props.person} />
-      <Stack spacing={2} minWidth={500}>
+      <Stack
+        height={`${imageSize}px`}
+        justifyContent="space-between"
+        spacing={2}
+        minWidth={500}
+      >
         <TextField
           fullWidth={true}
           label="Name"
@@ -56,7 +62,7 @@ export const Look: React.FC<LookProps> = (props) => {
         <TextField
           fullWidth={true}
           label="Biography"
-          minRows={3}
+          minRows={4}
           multiline={true}
           onChange={(event) => {
             updatePerson({ ...props.person, biography: event.target.value });

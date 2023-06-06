@@ -4,6 +4,7 @@ import { PhotoSize } from "./PhotoSize";
 import { Load } from "./Load";
 import { Save } from "./Save";
 import { New } from "./New";
+import { Export } from "./Export";
 
 export const MenuBar: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ export const MenuBar: React.FC = () => {
         <Typography>Look Book</Typography>
         <Load />
         <Save />
+        <Export />
         <New />
       </Stack>
       <Stack direction="row">

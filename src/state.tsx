@@ -1,12 +1,16 @@
 import { create, StateCreator } from "zustand";
 
 interface ConfigSlice {
+  export: boolean;
   imageSize: string;
+  setExport: () => void;
   setImageSize: (s: string) => void;
 }
 
 const createConfigSlice: StateCreator<ConfigSlice> = (set) => ({
+  export: false,
   imageSize: "200",
+  setExport: () => set(() => ({ export: true })),
   setImageSize: (s: string) => set(() => ({ imageSize: s })),
 });
 
