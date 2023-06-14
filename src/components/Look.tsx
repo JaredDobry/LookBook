@@ -33,7 +33,9 @@ export const Look: React.FC<LookProps> = (props) => {
               if (personAbove) swapPeople(props.person, personAbove);
             }}
           >
-            <ArrowUpward />
+            <ArrowUpward
+              color={personAbove === undefined ? "disabled" : "primary"}
+            />
           </IconButton>
           <IconButton
             disabled={personBelow === undefined}
@@ -41,7 +43,9 @@ export const Look: React.FC<LookProps> = (props) => {
               if (personBelow) swapPeople(props.person, personBelow);
             }}
           >
-            <ArrowDownward />
+            <ArrowDownward
+              color={personBelow === undefined ? "disabled" : "primary"}
+            />
           </IconButton>
         </Stack>
       </Paper>
@@ -52,7 +56,7 @@ export const Look: React.FC<LookProps> = (props) => {
             height={`${imageSize}px`}
             justifyContent="space-between"
             spacing={2}
-            minWidth={500}
+            width={500}
           >
             <Stack direction="row" spacing={2}>
               <TextField
@@ -69,7 +73,7 @@ export const Look: React.FC<LookProps> = (props) => {
                   removePerson(props.person);
                 }}
               >
-                <Close />
+                <Close color="error" />
               </IconButton>
             </Stack>
 
