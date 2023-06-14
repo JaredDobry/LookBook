@@ -1,6 +1,6 @@
 import React from "react";
 import { useBoundStore } from "../state";
-import { Button } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 import { Add } from "@mui/icons-material";
 
 export const New: React.FC = () => {
@@ -26,12 +26,20 @@ export const New: React.FC = () => {
   }, [addPerson, people]);
 
   return (
-    <Button
-      onClick={() => {
-        addEmptyPerson();
-      }}
+    <Tooltip
+      title={
+        people.length === 0
+          ? "Start a new look book"
+          : "Add a new look to this book"
+      }
     >
-      <Add />
-    </Button>
+      <IconButton
+        onClick={() => {
+          addEmptyPerson();
+        }}
+      >
+        <Add color="primary" />
+      </IconButton>
+    </Tooltip>
   );
 };

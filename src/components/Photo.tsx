@@ -22,6 +22,7 @@ export const Photo: React.FC<PhotoProps> = (props) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const updatePerson = useBoundStore((state) => state.updatePerson);
   const [url, setUrl] = React.useState<string>("");
+  const viewing = useBoundStore((state) => state.viewing);
 
   return (
     <>
@@ -29,7 +30,7 @@ export const Photo: React.FC<PhotoProps> = (props) => {
         alt={`${props.person.name}`}
         height={`${imageSize === "" ? 0 : imageSize}px`}
         id={`look-photo-${props.person.name}`}
-        onClick={() => setOpen(true)}
+        onClick={viewing ? () => {} : () => setOpen(true)}
         src={props.person.photo === "" ? placeholderImg : props.person.photo}
         style={{ objectFit: "cover" }}
         width={`${imageSize === "" ? 0 : imageSize}px`}

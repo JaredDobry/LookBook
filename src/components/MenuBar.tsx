@@ -1,10 +1,9 @@
-import { Stack, Typography } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import React from "react";
 import { PhotoSize } from "./PhotoSize";
 import { Load } from "./Load";
 import { Save } from "./Save";
 import { New } from "./New";
-import { Export } from "./Export";
 
 export const MenuBar: React.FC = () => {
   return (
@@ -12,6 +11,7 @@ export const MenuBar: React.FC = () => {
       justifyContent="space-between"
       direction="row"
       position="sticky"
+      px={1}
       style={{
         backgroundColor: "white",
         borderBottom: "1px solid black",
@@ -19,11 +19,16 @@ export const MenuBar: React.FC = () => {
       }}
       top="0px"
     >
-      <Stack alignItems="center" direction="row" px={1}>
-        <Typography>Look Book</Typography>
+      <Stack alignItems="center" direction="row" spacing={1}>
+        <Button
+          onClick={() => {
+            window.location.href = "/";
+          }}
+        >
+          Look Book
+        </Button>
         <Load />
         <Save />
-        <Export />
         <New />
       </Stack>
       <Stack direction="row">

@@ -1,5 +1,5 @@
 import { Photo } from "@mui/icons-material";
-import { Button, Popover, Box, TextField } from "@mui/material";
+import { IconButton, Popover, Box, TextField, Tooltip } from "@mui/material";
 import React from "react";
 import { useBoundStore } from "../state";
 
@@ -27,14 +27,16 @@ export const PhotoSize: React.FC = () => {
   );
   return (
     <>
-      <Button
-        onClick={(event) => {
-          setAnchorEl(event.currentTarget);
-          setOpen(true);
-        }}
-      >
-        <Photo />
-      </Button>
+      <Tooltip title="Set image size in pixels">
+        <IconButton
+          onClick={(event) => {
+            setAnchorEl(event.currentTarget);
+            setOpen(true);
+          }}
+        >
+          <Photo color="primary" />
+        </IconButton>
+      </Tooltip>
       <Popover
         anchorEl={anchorEl}
         anchorOrigin={{ horizontal: "left", vertical: "bottom" }}

@@ -1,72 +1,40 @@
+import { Box, Button, CssBaseline, Stack, Typography } from "@mui/material";
 import React from "react";
-import { Book } from "./pages/Book";
-import { MenuBar } from "./components/MenuBar";
-import { Box, CssBaseline } from "@mui/material";
 import { useBoundStore } from "./state";
 
 const App: React.FC = () => {
-  const doExport = useBoundStore((state) => state.export);
-  const imageSize = useBoundStore((state) => state.imageSize);
-  const people = useBoundStore((state) => state.people);
-
-  const lookBookToHTML = React.useCallback(() => {
-    return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "start",
-          marginLeft: "16px",
-        }}
-      >
-        {people.map((person) => {
-          return (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "start",
-                marginTop: "16px",
-              }}
-            >
-              <img
-                alt={person.name}
-                height={`${imageSize}px`}
-                src={person.photo}
-                width={`${imageSize}px`}
-              />
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  height: `${imageSize}px`,
-                  marginLeft: "16px",
-                }}
-              >
-                <p style={{ marginBottom: "0px", marginTop: "16px" }}>
-                  {person.name}
-                </p>
-                <p style={{ marginBottom: "0px", marginTop: "16px" }}>
-                  {person.biography}
-                </p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    );
-  }, [imageSize, people]);
-
-  if (doExport) {
-    return lookBookToHTML();
-  }
+  const setViewing = useBoundStore((state) => state.setViewing);
+  setViewing(false);
 
   return (
     <>
       <CssBaseline />
-      <MenuBar />
-      <Box display="flex" justifyContent="center" p={2}>
-        <Book />
+      <Box
+        alignItems="center"
+        display="flex"
+        height="100vh"
+        justifyContent="center"
+        p={2}
+      >
+        <Stack spacing={4}>
+          <Typography variant="h1">Look Book</Typography>
+          <Stack direction="row" justifyContent="center" spacing={4}>
+            <Button
+              onClick={() => {
+                window.location.href = "/edit";
+              }}
+            >
+              <Typography variant="h4">Edit</Typography>
+            </Button>
+            <Button
+              onClick={() => {
+                window.location.href = "/view";
+              }}
+            >
+              <Typography variant="h4">View</Typography>
+            </Button>
+          </Stack>
+        </Stack>
       </Box>
     </>
   );

@@ -2,24 +2,24 @@ import { create, StateCreator } from "zustand";
 
 interface BookSlice {
   description: string;
-  export: boolean;
   imageSize: string;
   name: string;
+  viewing: boolean;
   setDescription: (s: string) => void;
-  setExport: () => void;
   setImageSize: (s: string) => void;
   setName: (s: string) => void;
+  setViewing: (b: boolean) => void;
 }
 
 const createBookSlice: StateCreator<BookSlice> = (set) => ({
   description: "",
-  export: false,
   imageSize: "200",
   name: "",
+  viewing: false,
   setDescription: (s: string) => set(() => ({ description: s })),
-  setExport: () => set(() => ({ export: true })),
   setImageSize: (s: string) => set(() => ({ imageSize: s })),
   setName: (s: string) => set(() => ({ name: s })),
+  setViewing: (b: boolean) => set(() => ({ viewing: b })),
 });
 
 export type Person = {
