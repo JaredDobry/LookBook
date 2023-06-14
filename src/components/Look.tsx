@@ -44,12 +44,7 @@ export const Look: React.FC<LookProps> = (props) => {
         </Button>
       </Stack>
       <Photo person={props.person} />
-      <Stack
-        height={`${imageSize}px`}
-        justifyContent="space-between"
-        spacing={2}
-        minWidth={500}
-      >
+      <Stack minWidth={500} spacing={2}>
         <TextField
           fullWidth={true}
           label="Name"
@@ -62,7 +57,7 @@ export const Look: React.FC<LookProps> = (props) => {
         <TextField
           fullWidth={true}
           label="Biography"
-          minRows={4}
+          maxRows={Math.floor((Number(imageSize) - 105) / 23)} // Top TextField size + margin + inner area padding = 105px. Single row = 23px
           multiline={true}
           onChange={(event) => {
             updatePerson({ ...props.person, biography: event.target.value });

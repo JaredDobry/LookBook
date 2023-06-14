@@ -1,7 +1,7 @@
 import React from "react";
 import { Book } from "./pages/Book";
 import { MenuBar } from "./components/MenuBar";
-import { Box } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 import { useBoundStore } from "./state";
 
 const App: React.FC = () => {
@@ -63,8 +63,9 @@ const App: React.FC = () => {
 
   return (
     <>
+      <CssBaseline />
       <MenuBar />
-      <Box p={2}>
+      <Box display="flex" justifyContent="center" p={2}>
         <Book />
       </Box>
     </>
