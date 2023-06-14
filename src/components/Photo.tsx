@@ -31,6 +31,7 @@ export const Photo: React.FC<PhotoProps> = (props) => {
         id={`look-photo-${props.person.name}`}
         onClick={() => setOpen(true)}
         src={props.person.photo === "" ? placeholderImg : props.person.photo}
+        style={{ objectFit: "cover" }}
         width={`${imageSize === "" ? 0 : imageSize}px`}
       />
       <Dialog open={open} onClose={() => setOpen(false)}>

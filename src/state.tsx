@@ -1,17 +1,25 @@
 import { create, StateCreator } from "zustand";
 
-interface ConfigSlice {
+interface BookSlice {
+  description: string;
   export: boolean;
   imageSize: string;
+  name: string;
+  setDescription: (s: string) => void;
   setExport: () => void;
   setImageSize: (s: string) => void;
+  setName: (s: string) => void;
 }
 
-const createConfigSlice: StateCreator<ConfigSlice> = (set) => ({
+const createBookSlice: StateCreator<BookSlice> = (set) => ({
+  description: "",
   export: false,
   imageSize: "200",
+  name: "",
+  setDescription: (s: string) => set(() => ({ description: s })),
   setExport: () => set(() => ({ export: true })),
   setImageSize: (s: string) => set(() => ({ imageSize: s })),
+  setName: (s: string) => set(() => ({ name: s })),
 });
 
 export type Person = {
@@ -68,7 +76,7 @@ const createPeopleSlice: StateCreator<PeopleSlice> = (set) => ({
     })),
 });
 
-export const useBoundStore = create<ConfigSlice & PeopleSlice>()((...a) => ({
-  ...createConfigSlice(...a),
+export const useBoundStore = create<BookSlice & PeopleSlice>()((...a) => ({
+  ...createBookSlice(...a),
   ...createPeopleSlice(...a),
 }));

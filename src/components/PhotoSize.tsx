@@ -21,7 +21,6 @@ export const PhotoSize: React.FC = () => {
 
   const onImageSizeChange = React.useCallback(
     (value: string) => {
-      console.log(value);
       setImageSize(toNumeric(value));
     },
     [setImageSize]

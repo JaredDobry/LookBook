@@ -8,9 +8,7 @@ export const New: React.FC = () => {
   const addPerson = useBoundStore((state) => state.addPerson);
 
   const addEmptyPerson = React.useCallback(() => {
-    console.log(people);
     if (people.length === 0) {
-      console.log(0);
       addPerson({
         biography: "",
         id: 0,
@@ -18,7 +16,6 @@ export const New: React.FC = () => {
         photo: "",
       });
     } else {
-      console.log(people[-0].id + 1);
       addPerson({
         biography: "",
         id: people.slice(-1)[0].id + 1,
