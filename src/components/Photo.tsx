@@ -11,7 +11,7 @@ import {
   TextField,
 } from "@mui/material";
 import { Person, useBoundStore } from "../state";
-import placeholderImg from "../logo.svg";
+import placeholderImg from "../placeholder.png";
 
 type PhotoProps = {
   person: Person;

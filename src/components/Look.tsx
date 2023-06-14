@@ -1,6 +1,6 @@
 import React from "react";
 import { Person, useBoundStore } from "../state";
-import { Button, Stack, TextField } from "@mui/material";
+import { IconButton, Paper, Stack, TextField } from "@mui/material";
 import { ArrowDownward, ArrowUpward, Close } from "@mui/icons-material";
 import { Photo } from "./Photo";
 
@@ -24,55 +24,72 @@ export const Look: React.FC<LookProps> = (props) => {
   });
 
   return (
-    <Stack alignItems="start" direction="row" spacing={2}>
-      <Stack justifyContent="space-between">
-        <Button
-          disabled={personAbove === undefined}
-          onClick={() => {
-            if (personAbove) swapPeople(props.person, personAbove);
-          }}
-        >
-          <ArrowUpward />
-        </Button>
-        <Button
-          disabled={personBelow === undefined}
-          onClick={() => {
-            if (personBelow) swapPeople(props.person, personBelow);
-          }}
-        >
-          <ArrowDownward />
-        </Button>
-      </Stack>
-      <Photo person={props.person} />
-      <Stack minWidth={500} spacing={2}>
-        <TextField
-          fullWidth={true}
-          label="Name"
-          onChange={(event) => {
-            updatePerson({ ...props.person, name: event.target.value });
-          }}
-          placeholder="Name"
-          value={props.person.name}
-        />
-        <TextField
-          fullWidth={true}
-          label="Biography"
-          maxRows={Math.floor((Number(imageSize) - 105) / 23)} // Top TextField size + margin + inner area padding = 105px. Single row = 23px
-          multiline={true}
-          onChange={(event) => {
-            updatePerson({ ...props.person, biography: event.target.value });
-          }}
-          placeholder="Biography"
-          value={props.person.biography}
-        />
-      </Stack>
-      <Button
-        onClick={() => {
-          removePerson(props.person);
-        }}
-      >
-        <Close />
-      </Button>
+    <Stack direction="row" spacing={2}>
+      <Paper>
+        <Stack height="100%" justifyContent="space-between" p={1}>
+          <IconButton
+            disabled={personAbove === undefined}
+            onClick={() => {
+              if (personAbove) swapPeople(props.person, personAbove);
+            }}
+          >
+            <ArrowUpward />
+          </IconButton>
+          <IconButton
+            disabled={personBelow === undefined}
+            onClick={() => {
+              if (personBelow) swapPeople(props.person, personBelow);
+            }}
+          >
+            <ArrowDownward />
+          </IconButton>
+        </Stack>
+      </Paper>
+      <Paper>
+        <Stack direction="row" spacing={2} p={2}>
+          <Photo person={props.person} />
+          <Stack
+            height={`${imageSize}px`}
+            justifyContent="space-between"
+            spacing={2}
+            minWidth={500}
+          >
+            <Stack direction="row" spacing={2}>
+              <TextField
+                fullWidth={true}
+                label="Name"
+                onChange={(event) => {
+                  updatePerson({ ...props.person, name: event.target.value });
+                }}
+                placeholder="Name"
+                value={props.person.name}
+              />
+              <IconButton
+                onClick={() => {
+                  removePerson(props.person);
+                }}
+              >
+                <Close />
+              </IconButton>
+            </Stack>
+
+            <TextField
+              fullWidth={true}
+              label="Biography"
+              rows={Math.floor((Number(imageSize) - 105) / 23)}
+              multiline={true}
+              onChange={(event) => {
+                updatePerson({
+                  ...props.person,
+                  biography: event.target.value,
+                });
+              }}
+              placeholder="Biography"
+              value={props.person.biography}
+            />
+          </Stack>
+        </Stack>
+      </Paper>
     </Stack>
   );
 };
